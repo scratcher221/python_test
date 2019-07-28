@@ -1,0 +1,15 @@
+Satz von Bayes: P(A|B)=(P(B|A)*P(A))/P(B)
+
+Capitals:
+
+Philadelphia: 
+A priori Verteilung: 7:5 für Philadelphia -> P(t = no) = 5/12, P(t = yes) = 7/12
+Wahrscheinlichkeitsfunktion der bedingten Verteilung unter der Bedingung t = t_0: f(x|t_0)
+A posteriori Verteilung (Confidence): P(t = t_0|x)
+P(t = t_0|x) = f(x|t_0) * P(t = t_0)/(f(x|t_1)*P(t = t_1))
+Hypothetical 'Yes world': V(yes) = 20/21, votes for yes
+yes voter: (7/12) * (20/21) / (7/12 * 20/21 + 5/12 * 2/3) = 2/3 confidence.
+
+Columbia: 
+A priori Verteilung: 2:1 für nicht Columbia -> P(no) = 2/3, P(yes) = 1/3
+
