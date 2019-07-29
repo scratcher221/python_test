@@ -80,6 +80,8 @@ def bts(num_answer_options, votes):
             information_scores[i] = float("inf")
         print(F"The information score for answer {i + 1} is: {information_scores[i]}")
     # Calculate the prediction scores for all respondents
+    # Parameter 'alpha' is for tweaking the weight of the prediction penalty
+    alpha = 1
     prediction_scores = []
     respondent_scores = []
     respondent_index = 0
@@ -90,10 +92,12 @@ def bts(num_answer_options, votes):
             prediction_scores[respondent_index] += endorsement_frequencies[answer - 1] * math.log10((vote.prediction[answer] / 100) / endorsement_frequencies[answer - 1])
         # print(F"Prediction score for respondent {respondent_index + 1}: {prediction_scores[respondent_index]}")
         # Respondent score = information score of their selected answer + the respondent's prediction score
-        respondent_scores[respondent_index] = information_scores[vote.answer - 1] + prediction_scores[respondent_index]
+        respondent_scores[respondent_index] = information_scores[vote.answer - 1] + alpha * prediction_scores[respondent_index]
         print(F"Respondent score for respondent {respondent_index + 1}: {respondent_scores[respondent_index]}")
         print(F"Respondent score consists of: Information score: {information_scores[vote.answer - 1]} + Prediction score: {prediction_scores[respondent_index]}")
         respondent_index += 1
+
+    return respondent_scores
 
     # for i in range(len(arithmetic_avg_predicted_frequencies)):
     #     print(F"Arithmetic average of predictions for answer {i + 1}: {arithmetic_avg_predicted_frequencies[i]}")
