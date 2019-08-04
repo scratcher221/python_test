@@ -2,6 +2,7 @@ import math
 from vote import Vote
 
 def bts(num_answer_options, votes):
+    number_of_respondents = len(votes)
     # Check for errors (Total prediction percentage less than or greater than 100):
     # Set a minimum default value for predictions (otherwise geometric mean doesn't get calculated correctly)
     for vote in votes:
@@ -93,7 +94,31 @@ def bts(num_answer_options, votes):
         print(F"Respondent score consists of: Information score: {information_scores[vote.answer - 1]} + Prediction score: {prediction_scores[respondent_index]}")
         respondent_index += 1
 
-    return respondent_scores
+    # Generate answer matrices to be able to filter respondents
+    answer_matrix = []
+    for i in range(number_of_respondents):
+	    answer_matrix.append([])
+	    for j in range(num_answer_options):
+		    answer_matrix[i].append(0)
+    for i in range(number_of_respondents):
+	    answer_matrix[i][votes[i].answer - 1] = 1
+
+    # Select the "best" answer according to LST (least surprised by the truth) principle:
+    sum_respondent_scores_answer = []
+    lst_value = []
+    for k in range(num_answer_options):
+        lst_value.append(0)
+        sum_respondent_scores_answer.append(0)
+    for k in range(num_answer_options):
+        for r in range(number_of_respondents):
+            sum_respondent_scores_answer[k] += answer_matrix[r][k] * respondent_scores[r]
+    for k in range(num_answer_options):
+        lst_value[k] = 1 / (number_of_respondents * endorsement_frequencies[k]) * sum_respondent_scores_answer[k]
+        print(F"LST value for answer {k + 1} is: {lst_value[k]}")
+
+
+
+    return respondent_scores, information_scores
 
     # for i in range(len(arithmetic_avg_predicted_frequencies)):
     #     print(F"Arithmetic average of predictions for answer {i + 1}: {arithmetic_avg_predicted_frequencies[i]}")
