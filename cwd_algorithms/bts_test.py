@@ -124,27 +124,54 @@ def bts(num_answer_options, votes):
     #     print(F"Arithmetic average of predictions for answer {i + 1}: {arithmetic_avg_predicted_frequencies[i]}")
     
     
-    
-    
             
-# Let's say there's a multiple choice question with 5 options
-# The first argument of the Vote object is the answer that the respondent has chosen (1 - 5)
-# The second argument of the Vote object is the prediction that the respondent makes about the empirical distribution of the answer frequencies
-prediction1 = { 1: 10, 2: 60, 3: 10, 4: 20, 5: 0 }
-prediction2 = { 1: 10, 2: 20, 3: 70, 4: 0, 5: 0 }
-prediction3 = { 1: 5, 2: 55, 3: 15, 4: 25, 5: 0 }
-prediction4 = { 1: 0, 2: 100, 3: 0, 4: 0, 5: 0 }
-prediction5 = { 1: 25, 2: 25, 3: 25, 4: 25, 5: 0 }
-prediction6 = { 1: 10, 2: 10, 3: 10, 4 : 70, 5: 0 }
-prediction7 = { 1: 10, 2: 10, 3: 80, 4: 0, 5: 0}
-v1 = Vote(2, prediction1)
-v2 = Vote(3, prediction2)
-v3 = Vote(2, prediction3)
-v4 = Vote(2, prediction4)
-v5 = Vote(2, prediction5)
-v6 = Vote(4, prediction6)
-v7 = Vote(5, prediction7)
-votes = [v1, v2, v3, v4, v5, v6, v7]
+# Test the implementation with the question: Is Philadelphia the capital of Pennsylvania, yes (1) or no (2)?
+# 11 vote no, 22 vote yes
 
-bts(5, votes)
+# Participants who voted "no" (correct answer):
+p1 = {1: 20, 2: 80}
+p2 = {1: 40, 2: 60}
+p3 = {1: 60, 2: 40}
+p4 = {1: 60, 2: 40}
+p5 = {1: 60, 2: 40}
+p6 = {1: 70, 2: 30}
+p7 = {1: 80, 2: 20}
+p8 = {1: 80, 2: 20}
+p9 = {1: 80, 2: 20}
+p10 = {1: 90, 2: 10}
+p11 = {1: 90, 2: 10}
+
+# Participants who voted "yes" (incorrect answer):
+# Predictions for "yes": 60: 1, 70: 4, 80: 7, 90: 10
+p12 = {1: 60, 2: 40}
+p13 = {1: 70, 2: 30}
+p14 = {1: 70, 2: 30}
+p15 = {1: 70, 2: 30}
+p16 = {1: 70, 2: 30}
+p17 = {1: 80, 2: 20}
+p18 = {1: 80, 2: 20}
+p19 = {1: 80, 2: 20}
+p20 = {1: 80, 2: 20}
+p21 = {1: 80, 2: 20}
+p22 = {1: 80, 2: 20}
+p23 = {1: 80, 2: 20}
+p24 = {1: 90, 2: 10}
+p25 = {1: 90, 2: 10}
+p26 = {1: 90, 2: 10}
+p27 = {1: 90, 2: 10}
+p28 = {1: 90, 2: 10}
+p29 = {1: 90, 2: 10}
+p30 = {1: 90, 2: 10}
+p31 = {1: 90, 2: 10}
+p32 = {1: 90, 2: 10}
+p33 = {1: 90, 2: 10}
+
+# Votes
+v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11 = Vote(2, p1), Vote(2, p2), Vote(2, p3), Vote(2, p4), Vote(2, p5), Vote(2, p6), Vote(2, p7), Vote(2, p8), Vote(2, p9), Vote(2, p10), Vote(2, p11)
+v12, v13, v14, v15, v16, v17, v18, v19, v20 = Vote(1, p12), Vote(1, p13), Vote(1, p14), Vote(1, p15), Vote(1, p16), Vote(1, p17), Vote(1, p18), Vote(1, p19), Vote(1, p20)
+v21, v22, v23, v24, v25, v26, v27, v28, v29 = Vote(1, p21), Vote(1, p22), Vote(1, p23), Vote(1, p24), Vote(1, p25), Vote(1, p26), Vote(1, p27), Vote(1, p28), Vote(1, p29)
+v30, v31, v32, v33 = Vote(1, p30), Vote(1, p31), Vote(1, p32), Vote(1, p33)
+votes = [v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33]
+
+bts(2, votes)
 
